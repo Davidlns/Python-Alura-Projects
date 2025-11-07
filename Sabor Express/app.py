@@ -1,5 +1,7 @@
 import os
 
+restaurantes = ['Bella Vista', 'Pé de fava', 'Sabor do Nordeste']
+
 def exibir_name_of_program():
 
     print("""
@@ -21,10 +23,38 @@ def finalizar_app():
     os.system('cls')
     print('Finalizando o app\n')
 
+def voltar_ao_menu():
+    input('\nDigite uma tecla para voltar ao menu...')
+    main()
+
 def opcao_invalida():
     print('Opção Inválida!\n')
-    input('Digite uma tecla para voltar ao menu principal...')
-    main()
+
+    voltar_ao_menu()
+
+def exibir_subtitulo(subtitulo):
+    os.system('cls')
+    print(f'{subtitulo} \n')
+
+def cadastrar_novo_restaurante():
+    exibir_subtitulo('Cadastro de Restaurante:')
+    nome_do_restautante = input('Digite o nome do restaurante que deseja cadastrar: ')
+    restaurantes.append(nome_do_restautante)
+    print(f'\nRestaurante {nome_do_restautante} foi cadastrado com sucesso!')
+
+    voltar_ao_menu()
+
+def listar_restaurantes():
+    exibir_subtitulo('Lista de Restaurantes: ')
+    if len(restaurantes) == 0:
+        print('Nenhum Restaurante cadastrado.')
+
+        voltar_ao_menu()
+    else:
+        for restaurante in restaurantes:
+            print(f'{restaurante}')
+
+        voltar_ao_menu()
 
 def escolher_opcao():
         try:
@@ -32,13 +62,13 @@ def escolher_opcao():
 
             match opcao_escolhida:
                 case 1:
-                    print('Cadastrando Restaurante...')
+                    cadastrar_novo_restaurante()
                 case 2:
-                    print('Listando Restaurante...')
+                    listar_restaurantes()
                 case 3:
                     print('Ativando Restaurante...')
                 case 4:
-                    finalizar_app
+                    finalizar_app()
                 case _:
                     opcao_invalida()
 
