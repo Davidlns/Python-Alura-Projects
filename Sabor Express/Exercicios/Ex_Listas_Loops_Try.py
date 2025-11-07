@@ -58,4 +58,18 @@ def soma_lista():
             print('Não foi possível converter, apenas números são aceitos na lista')
     print(f'\nA soma dos números presentes na lista é: {soma}\n')
 
-soma_lista()
+def media_lista():
+    #Crie uma lista e calcule a média dos numeros presentes nela, use um bloco try-except para lidar com divisão por 0 para lista vazia
+    lista = [6,8,11,7]
+    soma = 0
+    media = 0
+    for numero in lista:
+        try:
+            soma += numero
+        except:
+            print('Dado inválido presente na lista')
+    try:
+        media = soma / len(lista)
+        print(f'A média dos números na lista é: {media: .2f}')
+    except:
+        print('Não contem itens na lista')
