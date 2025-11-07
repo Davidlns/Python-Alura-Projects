@@ -20,8 +20,7 @@ def exibir_opcoes():
     print('4. Sair\n')
 
 def finalizar_app():
-    os.system('cls')
-    print('Finalizando o app\n')
+    exibir_subtitulo('Programa Finalizado...')
 
 def voltar_ao_menu():
     input('\nDigite uma tecla para voltar ao menu...')
