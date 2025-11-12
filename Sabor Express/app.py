@@ -18,8 +18,27 @@ def exibir_name_of_program():
 def exibir_opcoes():
     print('1. Cadastrar restaurante')
     print('2. Listar restaurante')
-    print('3. Ativar restaurante')
+    print('3. Ativar ou Desativar Restaurante')
     print('4. Sair\n')
+
+def escolher_opcao():
+        try:
+            opcao_escolhida = int(input('Escolha uma Opção: '))
+
+            match opcao_escolhida:
+                case 1:
+                    cadastrar_novo_restaurante()
+                case 2:
+                    listar_restaurantes()
+                case 3:
+                    ativar_desativar_restaurante()
+                case 4:
+                    finalizar_app()
+                case _:
+                    opcao_invalida()
+
+        except:
+            opcao_invalida()
 
 def finalizar_app():
     exibir_subtitulo('Programa Finalizado...')
@@ -55,17 +74,22 @@ def cadastrar_novo_restaurante():
 
 def listar_restaurantes():
     exibir_subtitulo('Lista de Restaurantes: ')
+    linha = '-' * 62
+
     if len(restaurantes) == 0:
         print('Nenhum Restaurante cadastrado.')
 
         voltar_ao_menu()
     else:
+        print(linha)
+        print(f'{'|NOME DO RESTAURANTE'.ljust(23)} | {'CATEGORIA'.ljust(20)} | {'STATUS'.ljust(12)}|')
+        print(linha)
         for restaurante in restaurantes:
             nome_restaurante = restaurante['nome']
             categoria_restaurante = restaurante['categoria']
             ativo = 'Ativado' if restaurante['ativo'] else 'Desativado'
 
-            print(f'{nome_restaurante} | {categoria_restaurante} | {ativo}\n' )
+            print(f'|- {nome_restaurante.ljust(20)} | {categoria_restaurante.ljust(20)} | {ativo.ljust(12)}|\n')
 
         voltar_ao_menu()
 
@@ -85,28 +109,7 @@ def ativar_desativar_restaurante():
     if not restaurante_encontrado:
         print(f'Restaurante {nome_do_restaurante} não encontrado!')
     voltar_ao_menu()
-
-
-def escolher_opcao():
-        try:
-            opcao_escolhida = int(input('Escolha uma Opção: '))
-
-            match opcao_escolhida:
-                case 1:
-                    cadastrar_novo_restaurante()
-                case 2:
-                    listar_restaurantes()
-                case 3:
-                    ativar_desativar_restaurante()
-                case 4:
-                    finalizar_app()
-                case _:
-                    opcao_invalida()
-
-        except:
-            opcao_invalida()
             
-
 def main():
     exibir_name_of_program()
     exibir_opcoes()
